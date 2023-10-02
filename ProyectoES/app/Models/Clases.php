@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 
 class Clases extends Model
 {
@@ -11,21 +14,21 @@ class Clases extends Model
 
     public function asistencias(): HasMany
     {
-        return $this->hasMany(Asistencia::class);
+        return $this->hasMany(Asistencias::class);
     }
 
     public function estudiantes(): BelongsToMany
     {
-        return $this->belongsToMany(Estudiante::class, 'estudiante_clase');
+        return $this->belongsToMany(Estudiantes::class, 'estudiante_clase');
     }
 
     public function maestros(): BelongsToMany
     {
-        return $this->belongsToMany(Maestro::class, 'maestro_clase');
+        return $this->belongsToMany(Maestros::class, 'maestro_clase');
     }
 
     public function ofrendas(): HasMany
     {
-        return $this->hasMany(Ofrenda::class, 'clases_id');
+        return $this->hasMany(Ofrendas::class, 'clases_id');
     }
 }
